@@ -4,8 +4,6 @@ say "perl project ";
 package main;
 
 use Data::Dumper::Concise;
-use Time::HiRes qw( usleep  gettimeofday tv_interval
-    stat lstat );
 
 use WWW::Curl::Simple;
 
