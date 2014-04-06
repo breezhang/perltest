@@ -11,7 +11,7 @@ my $curl =
     WWW::Curl::Simple->new( ssl_cert_bundle =>
         "D:\\Curl\\curl-7.33.0-win32\\curl-7.33.0-win32\\bin\\curl-ca-bundle.crt"
     );
-my $res = $curl->get('https://www.debuggex.com/');
+my $res = $curl->get('https://www.google.com/');
 
 if ( $res->is_success ) {
 
@@ -23,14 +23,14 @@ if ( $res->is_success ) {
     for ( split /;/, $service ) {
         if (m{(\w+)=(.+)|(\w+)}x) {
             if ( !$2 && !$1 ) {
-                $cookie->{$3} = "";
+                $cookie->{$3} = [];
                 next;
             }
             if ( !$cookie->{$1} ) {
-                $cookie->{$1} = $2;
+                $cookie->{$1} = [$2];
             }
             else {
-                $cookie->{ $1 . "E" } = $2;
+               push $cookie->{$1} , $2;
             }
         }
     }
