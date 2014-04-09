@@ -50,7 +50,8 @@ sub del100ns {
 
 $a = clock_win32();
 del100ns(10);
+$f = freq();
 $b = clock_win32();
 
-print( ( ( $b - $a ) / $f ) );
+printf "%f",( ( ( $b - $a ) / $f ) );
 
