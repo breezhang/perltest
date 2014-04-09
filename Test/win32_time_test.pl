@@ -43,7 +43,7 @@ printf "max %f ms  min %f ms sys %f ms \n", unpack( "l", $min ) / 10000,
 
 sub del100ns {
     my $t= shift;
-    my $t = ~($t -1 );
+    my $t = ~($t);
     my $aa = pack( "LL", $t, 0xFFFFFFFF );
     NtDelayExecution( 0, $aa );
 }
