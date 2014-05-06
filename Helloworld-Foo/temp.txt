@@ -1,0 +1,23 @@
+
+
+Windows IP Configuration
+
+
+PPP adapter JP:
+
+   Connection-specific DNS Suffix  . : 
+   IPv4 Address. . . . . . . . . . . : 10.211.1.49
+   Subnet Mask . . . . . . . . . . . : 255.255.255.255
+   Default Gateway . . . . . . . . . : 0.0.0.0
+
+Wireless LAN adapter Wireless Network Connection:
+
+   Media State . . . . . . . . . . . : Media disconnected
+   Connection-specific DNS Suffix  . : 
+
+Ethernet adapter 1000M eth0:
+
+   Connection-specific DNS Suffix  . : domain
+   IPv4 Address. . . . . . . . . . . : 192.168.1.100
+   Subnet Mask . . . . . . . . . . . : 255.255.255.0
+   Default Gateway . . . . . . . . . : 192.168.1.1

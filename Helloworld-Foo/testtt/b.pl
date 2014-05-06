@@ -1,0 +1,10 @@
+use Storable qw(store retrieve freeze thaw dclone);
+%color = ( 'Blue' => 0.1, 'Red' => 0.8, 'Black' => 0, 'White' => 1 );
+store( \%color, 'mycolors' ) or die "Can't store %a in mycolors!\n";
+$colref = retrieve('mycolors');
+die "Unable to retrieve from mycolors!\n" unless defined $colref;
+printf "Blue is still %lf\n", $colref->{'Blue'};
+$colref2 = dclone( \%color );
+$str     = freeze( \%color );
+printf "Serialization of %%color is %d bytes long.\n", length($str);
+$colref3 = thaw($str);
