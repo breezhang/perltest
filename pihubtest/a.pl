@@ -34,4 +34,35 @@ sub get_token {
         print @list;
     }
 
+    $result = $p->create(
+          data => {
+              description => 'the description for this gist',
+              public      => 1,
+              files => { 'file1.txt' => { content => 'String file content' } }
+          }
+    );
+    my $myid;
+    if ( $result->success ) {
+        $myid = $result->content->{id};
+        printf "The new gist is available at %s     %s\n",
+            $result->content->{html_url}, $result->content->{id};
+
+    }
+
+    $result = $p->delete( gist_id => $myid );
+    if ( $result->success ) {
+        print "The gist $myid has been deleted\n";
+    }
+
+
+    my $result = $p->list();
+    if ( $result->success ) {
+        while ( my $row = $result->next ) {
+            printf "%s => %s\n", $row->{html_url},
+                $row->{description} || 'no description';
+        }
+    }
+
+    say "demo done ";
+
 }
