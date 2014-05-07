@@ -1,4 +1,4 @@
-#!
+#! perl
 use strict;
 use warnings;
 use Pithub;
@@ -55,7 +55,7 @@ sub get_token {
     }
 
 
-    my $result = $p->list();
+    $result = $p->list();
     if ( $result->success ) {
         while ( my $row = $result->next ) {
             printf "%s => %s\n", $row->{html_url},
