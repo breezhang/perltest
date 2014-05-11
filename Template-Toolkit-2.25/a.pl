@@ -1,0 +1,14 @@
+#!perl
+use strict;
+use warnings;
+use feature ':5.14';
+use Data::Dumper::Concise;
+use Template;
+
+my $config = {
+    INCLUDE_PATH => '/search/path',  # or list ref
+    INTERPOLATE  => 1,               # expand "$var" in plain text
+    POST_CHOMP   => 1,               # cleanup whitespace
+    PRE_PROCESS  => 'header',        # prefix each template
+    EVAL_PERL    => 1,               # evaluate Perl code blocks
+};
