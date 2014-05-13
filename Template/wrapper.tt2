@@ -1,0 +1,39 @@
+[% scared = 'afeared'
+
+  beats  = 'noises'
+
+  vibes  = 'sweet airs'
+
+  chill  = 'give delight'
+
+
+-%]
+
+
+[% WRAPPER box border=1 %]
+
+  Be not [% scared %]; the isle is full of [% beats %],
+
+  Sounds and [% vibes %], that [% chill %] and hurt not.
+
+[% END -%]
+
+
+[% BLOCK box -%]
+
+<table border="[% border %]">
+
+  <tr>
+
+    <td>
+
+      [%- content -%]
+
+    </td>
+
+  </tr>
+
+</table>
+
+[% END -%]
+

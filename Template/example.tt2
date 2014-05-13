@@ -1,3 +1,44 @@
+[% USE date -%]
+
+[% MACRO now GET date.format(date.now, '%H:%M:%S') -%]
+
+[% MACRO today GET date.format(date.now, '%Y-%m-%d') -%]
+
+[% MACRO number(n) GET n.chunk(-3).join(',') %]
+
+[% now %] [% today %]
+
+[% number(1234567) %]
+
+
+[%  terms = {
+
+        sass  = 'know, be aware of, meet, have sex with',
+
+        hoopy = 'really together guy',
+
+        frood = 'really, amazingly together guy'
+
+    };
+
+
+
+    MACRO explain(term) 
+
+        IF (explanation = terms.$term);
+
+            "$term ($explanation)";
+
+        ELSE;
+
+            term;
+
+        END;
+
+%]
+
+Hey you [% explain('sass') %] that
+
 
 
 
