@@ -1,0 +1,14 @@
+<html>
+
+  <head>
+
+    <title>[% author %]: [% title %]</title>
+
+  </head>
+
+
+
+  <body bgcolor="[% bgcol %]">
+
+    <h1>[% title %]</h1>
+

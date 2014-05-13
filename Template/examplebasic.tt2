@@ -1,0 +1,5 @@
+[% a=100 b='helloworld' e='breezang1877@hotmail.com' u='bree' l='zhang'%]
+
+this is a demo [%a%] [%u%] [%l%] [%e%]
+
+
