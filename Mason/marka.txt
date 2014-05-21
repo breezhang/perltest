@@ -1,0 +1,14 @@
+perl Mason and vim 
+
+1 add mc type is mason vim code mason 1 default mason   
+
+{
+    au BufRead,BufNewFile *.mc set filetype=mason
+}
+
+2 format mason file use masontidy  vim code 
+
+{
+    !masontidy  -r %
+}
+
