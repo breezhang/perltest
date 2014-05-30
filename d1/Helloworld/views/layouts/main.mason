@@ -1,0 +1,84 @@
+%# $m->flush_buffer;
+% $m->cache(data_cache_api => 'CHI');
+<%perl>
+
+ use Data::Dumper::Concise;
+ my %detai = @_;
+ my $show_me = Dumper \%detai;
+ my $httprequire = $detai{request};
+ my $content = $detai{content};
+ my $session = $detai{session};
+ my $appdir =  $detai{settings}->{appdir};
+ my $dancer_version = $detai{dancer_version}; 
+
+use JSON::XS;
+use Storable;
+use LWP::Simple;
+use feature ":5.14";
+use Carp qw /croak carp confess/;
+
+if(! -e 'output.txt'){
+my $content = get("http://api.bootswatch.com/3/") || croak "Couldn't get it!" ;
+store decode_json $content, 'output.txt';
+}
+my $var = retrieve('output.txt');
+
+my ($theme)  = grep { $_->{name} =~ m{Simplex} } @{$var->{themes}};
+
+my $html5jsfile = $appdir .'\public\javascripts\modernizr.js';
+if(! -e $html5jsfile) {
+my $modernizr = "http://modernizr.com/downloads/modernizr-latest.js";
+getstore($modernizr, $html5jsfile);
+}
+</%perl>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html class="+no-js no-js- no-js i-has-no-js" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+ <meta charset="UTF-8">
+ <meta http-equiv="Content-type" content="text/html">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Welcome to Wally World!</title>
+%#<link rel="stylesheet" href="<% $theme->{cssCdn} %>">
+<link rel="stylesheet" href="<% $httprequire->uri_base()%>/css/style.css">
+<script type="text/javascript" src= "<% $httprequire->uri_base()%>/javascripts/modernizr.js " ></script>
+<script type="text/javascript" src= "//cdnjs.cloudflare.com/ajax/libs/yepnope/1.5.4/yepnope.min.js" ></script>
+</head>
+<script >
+var docready=[],$=function(o){function r(fn){docready.push(fn);}if(typeof o === 'function') r(o);return{ready: r}};
+</script>
+
+
+<script  type="text/javascript">
+yepnope({
+  load: ["//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js", "//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"],
+  callback: function(url, result, key) {
+       //console.log(url, result, key);
+       if (!window.jQuery) yepnope('/javascripts/jquery.min.js');
+    },
+complete: function() {
+      $ = jQuery;
+      jQuery(document).ready(function() {
+          for(n in docready) docready[n]();
+      });
+    }
+    });
+</script>
+<body>
+%#<div class="jumbotron">
+%# $m->comp( '../index.mason' );
+%#  $m->callers(0);
+%# $m->fetch_next_all();
+%# say Dumper $m->{wrapper_index} ;
+%# say Dumper $m->{interp}->{container};
+%# say Dumper $m->{interp}->{comp_root};
+%# say $_, "<br>" for keys $m->{interp}->{code_cache};
+%# say Dumper  $m->{interp}->{code_cache}->{'/index.mason'}->{comp};
+%# $m->callers;
+%#</div>
+%#<div class="well">
+% $m->call_next;
+%#</div>
+</body>
+</html>
